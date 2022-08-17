@@ -1,33 +1,35 @@
-import './App.css'
-//import { useEffect, useState } from 'react'
+//import './App.css'
+import { useEffect, useState } from 'react'
 
-import Company from './Company'
-// import Vehicle     from './Vehicle'
-// import Stop        from './Stop'
+import Company      from './Company'
+import TextFilter   from './TextFilter'
+import IssueFilters from './IssueFilters'
 
 import companies from './company_exclusions.json'
 
 
 function App() {
-    // const [routeList, setRouteList] = useState([])
+    const [results, setResults] = useState(companies)
 
-    // useEffect(() => {
-    //     const getRoutes = async () => {
-    //         const res  = await fetch(API + 'routes?filter[type]=0,1,2')
-    //         const data = await res.json()
-    //         setRouteList(data.data)
-    //     }
-    //     getRoutes()
-    // }, [])
+    const [nameFilter, setNameFilter]     = useState('')
+    const [tickerFilter, setTickerFilter] = useState('')
+    const [issueFilters, setIssueFilters] = useState({})
 
 
-    // const [route, setRoute] = useState('CR-Providence')
+    useEffect(() => {
+        const issueFilterList = Object.keys(issueFilters)
+        
+        const filtered = companies.filter((company) => {
+            const name   = matchesName(company, nameFilter)
+            const ticker = matchesTicker(company, tickerFilter)
+            const issues = matchesIssues(company, issueFilterList)
 
-    // const handleRouteChange = (selected) => {
-    //     setRoute(selected)
-    // }
+            return name && ticker && issues
+        })
+        setResults(filtered)
 
-    const results = companies
+    }, [nameFilter, tickerFilter, issueFilters])
+
 
     return (
         <div className='App'>
@@ -35,15 +37,26 @@ function App() {
                 <table>
                     <thead>
                         <tr>
-                            <th>Company</th>
+                            <th>Company Name</th>
                             <th>Ticker</th>
                             <th>Issues</th>
                         </tr>
 
                         <tr>
-                            <th>Search Input</th>
-                            <th>Search Input</th>
-                            <th>Issue Filters</th>
+                            <TextFilter
+                                value={nameFilter}
+                                onQueryChange={setNameFilter}
+                            />
+                            
+                            <TextFilter
+                                value={tickerFilter}
+                                onQueryChange={setTickerFilter}
+                            />
+
+                            <IssueFilters
+                                filters={issueFilters}
+                                onFilterChange={setIssueFilters}
+                            />
                         </tr>
                     </thead>
 
@@ -51,6 +64,7 @@ function App() {
                         { results.map((company) => {
                             return (
                                 <Company
+                                    key={company.name}
                                     {...company}
                                 />
                             )
@@ -63,3 +77,28 @@ function App() {
 }
 
 export default App
+
+
+function matchesName(company, filter) {
+    if(!filter) return true
+    const name  = company.name.toLowerCase()
+    const query = filter.toLowerCase()
+
+    return name.includes(query)
+}
+
+function matchesTicker(company, filter) {
+    if(!filter) return true
+    const ticker = company.ticker.toLowerCase()
+    const query  = filter.toLowerCase()
+
+    return ticker.includes(query)
+}
+
+function matchesIssues(company, filters) {
+    for(let issue of filters) {
+        if(!company.issues[issue]) return false
+    }
+    
+    return true
+}
