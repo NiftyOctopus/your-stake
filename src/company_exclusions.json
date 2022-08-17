@@ -1,0 +1,32 @@
+[
+    {
+        "name":   "Acme",
+        "ticker": "ME",
+        "issues": {
+            "Animal Testing":  true,
+            "Nuclear Weapons": false,
+            "Coal Power":      false,
+            "Rainforest Destruction": true
+        }
+    },
+    {
+        "name":   "Acme2",
+        "ticker": "ME2",
+        "issues": {
+            "Animal Testing":  true,
+            "Nuclear Weapons": false,
+            "Coal Power":      false,
+            "Rainforest Destruction": true
+        }
+    },
+    {
+        "name":   "Acme3",
+        "ticker": "ME3",
+        "issues": {
+            "Animal Testing":  true,
+            "Nuclear Weapons": false,
+            "Coal Power":      false,
+            "Rainforest Destruction": true
+        }
+    }
+]
