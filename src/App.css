@@ -1,0 +1,28 @@
+.App {
+    display: flex
+}
+
+.App > div {
+    margin: 2em auto;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+thead .filters th {
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid black;
+}
+
+tbody tr:first-child td {
+    padding-top: 2em;
+}
+
+th:first-child {
+    text-align: left;
+}
+
+td:nth-child(2) {
+    text-align: center;
+}

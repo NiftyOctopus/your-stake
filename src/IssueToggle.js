@@ -9,9 +9,8 @@ function IssueToggle(props) {
     }
 
     return (
-        <span onClick={handleClick}>
-            <span>{props.name[0]}</span>
-            <span>{props.state ? '[x]' : '[ ]'}</span>
+        <span onClick={handleClick} style={{ opacity: props.state ? 1 : 0.2 }}>
+            <img src={`icons/${props.name.replace(' ', '_')}.png`}/>
         </span>
     )
 }

@@ -1,4 +1,4 @@
-//import './App.css'
+import './App.css'
 import { useEffect, useState } from 'react'
 
 import Company      from './Company'
@@ -36,13 +36,13 @@ function App() {
             <div>
                 <table>
                     <thead>
-                        <tr>
+                        <tr className='headers'>
                             <th>Company Name</th>
                             <th>Ticker</th>
                             <th>Issues</th>
                         </tr>
 
-                        <tr>
+                        <tr className='filters'>
                             <TextFilter
                                 value={nameFilter}
                                 onQueryChange={setNameFilter}
