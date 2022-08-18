@@ -11,7 +11,7 @@ function IssueToggle(props) {
     return (
         <span
             onClick={handleClick}
-            tooltip={props.name}
+            title={props.name}
             style={{ opacity: props.state ? 1 : 0.2 }}>
 
             <img src={`icons/${props.name.replace(' ', '_')}.png`}/>
