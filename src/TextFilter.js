@@ -10,7 +10,7 @@ function TextFilter(props) {
     return (
         <th>
             <div>
-                <input
+                <input style={{ width: 50 }}
                     type='text'
                     value={props.value}
                     onChange={handleChange}

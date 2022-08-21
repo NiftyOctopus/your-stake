@@ -19,10 +19,17 @@ tbody tr:first-child td {
     padding-top: 2em;
 }
 
-th:first-child {
+th:first-child, td:first-child {
+    width: 20em;
     text-align: left;
 }
 
-td:nth-child(2) {
+th:nth-child(2), td:nth-child(2) {
+    width: 5em;
+    text-align: center;
+}
+
+th:last-child, td:last-child {
+    width: 150px;
     text-align: center;
 }
